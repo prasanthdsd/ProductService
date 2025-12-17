@@ -1,12 +1,14 @@
 package com.project.productservice.services;
 
+import com.project.productservice.dtos.FakeStoreProductDto;
+import com.project.productservice.dtos.GenericProductDto;
 import com.project.productservice.models.Product;
 import org.springframework.stereotype.Service;
 
 
 public interface ProductService {
 
-    String getProductById(Long id);
+    GenericProductDto getProductById(Long id);
 
     void getAllProducts();
 

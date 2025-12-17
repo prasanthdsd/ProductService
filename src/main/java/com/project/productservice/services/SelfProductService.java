@@ -1,5 +1,7 @@
 package com.project.productservice.services;
 
+import com.project.productservice.dtos.FakeStoreProductDto;
+import com.project.productservice.dtos.GenericProductDto;
 import com.project.productservice.models.Product;
 import org.springframework.stereotype.Service;
 
@@ -7,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class SelfProductService  implements ProductService{
 
     @Override
-    public String getProductById(Long id) {
-        return "";
+    public GenericProductDto getProductById(Long id) {
+        return null;
     }
 
     @Override
