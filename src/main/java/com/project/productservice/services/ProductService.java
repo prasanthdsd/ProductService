@@ -1,20 +1,20 @@
 package com.project.productservice.services;
 
-import com.project.productservice.dtos.FakeStoreProductDto;
 import com.project.productservice.dtos.GenericProductDto;
-import com.project.productservice.models.Product;
-import org.springframework.stereotype.Service;
+import com.project.productservice.exceptions.ProductNotFoundException;
+
+import java.util.List;
 
 
 public interface ProductService {
 
-    GenericProductDto getProductById(Long id);
+    GenericProductDto getProductById(Long id) throws ProductNotFoundException;
 
-    void getAllProducts();
+    List<GenericProductDto> getAllProducts();
 
-    void deleteProductById(Long productId) ;
+    GenericProductDto deleteProductById(Long productId) ;
 
-    void createProduct(Product product);
+    GenericProductDto createProduct(GenericProductDto genericProductDto);
 
-    void updateProductById(long productId);
+    GenericProductDto updateProductById(Long id, GenericProductDto genericProductDto);
 }

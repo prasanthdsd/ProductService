@@ -1,12 +1,12 @@
 package com.project.productservice.controllers;
 
-import com.project.productservice.dtos.FakeStoreProductDto;
 import com.project.productservice.dtos.GenericProductDto;
-import com.project.productservice.models.Product;
+import com.project.productservice.exceptions.ProductNotFoundException;
 import com.project.productservice.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -22,24 +22,38 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) {
+    public GenericProductDto getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
 
         return productService.getProductById(id);
     }
 
     @GetMapping
-    public void getAllProducts() {}
+    public List<GenericProductDto> getAllProducts() {
+        return productService.getAllProducts();
+    }
 
     @DeleteMapping("/{id}")
-    public void deleteProductById(Long productId) {}
+    public GenericProductDto deleteProductById(@PathVariable("id") Long id) {
+        return productService.deleteProductById(id);
+    }
 
-    public void createProduct(Product product) {}
+    @PostMapping
+    public GenericProductDto createProduct(@RequestBody GenericProductDto genericProductDto) {
+        return productService.createProduct(genericProductDto);
+    }
 
     @PutMapping("/{id}")
-    public void updateProductById(long productId) {}
+    public GenericProductDto updateProductById(@PathVariable("id") Long id, @RequestBody GenericProductDto genericProductDto) {
+        return productService.updateProductById(id,genericProductDto);
+    }
 
-
-
+//    @ExceptionHandler(ProductNotFoundException.class)
+//    private ResponseEntity<ExceptionDto> handleProductNotFoundException(ProductNotFoundException productNotFoundException) {
+//        ExceptionDto exceptionDto = new ExceptionDto();
+//        exceptionDto.setMessage(productNotFoundException.getMessage());
+//        exceptionDto.setHttpStatusCode(HttpStatusCode.valueOf(404));
+//        return new ResponseEntity<>(exceptionDto, HttpStatus.NOT_FOUND);
+//    }
 }
 
 
