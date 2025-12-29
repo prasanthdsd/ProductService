@@ -28,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<GenericProductDto> getAllProducts() {
+    public List<GenericProductDto> getAllProducts()  throws ProductNotFoundException{
         return productService.getAllProducts();
     }
 
