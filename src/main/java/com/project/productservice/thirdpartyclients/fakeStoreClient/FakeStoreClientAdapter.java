@@ -3,7 +3,9 @@ package com.project.productservice.thirdpartyclients.fakeStoreClient;
 import com.project.productservice.dtos.FakeStoreProductDto;
 import com.project.productservice.dtos.GenericProductDto;
 import com.project.productservice.exceptions.ProductNotFoundException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.restclient.RestTemplateBuilder;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -21,11 +23,14 @@ public class FakeStoreClientAdapter {
     private final RestTemplateBuilder restTemplateBuilder;
 
 
-    private final String genericProductUrl = "https://fakestoreapi.com/products";
-    private final String specificProductUrl = "https://fakestoreapi.com/products/{id}";
+    private final String genericProductUrl;
+    private final String specificProductUrl;
 
-    FakeStoreClientAdapter(RestTemplateBuilder restTemplateBuilder) {
+    FakeStoreClientAdapter(RestTemplateBuilder restTemplateBuilder, @Value("${fakestore.api.url}")String fakeStoreUrl,@Value("${pathforproducts}") String pathForProducts)
+    {
         this.restTemplateBuilder = restTemplateBuilder;
+        this.genericProductUrl = fakeStoreUrl + pathForProducts;
+        this.specificProductUrl = fakeStoreUrl + pathForProducts + "/{id}";
     }
 
 
