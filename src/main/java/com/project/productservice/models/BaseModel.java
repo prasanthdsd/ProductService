@@ -1,10 +1,11 @@
 package com.project.productservice.models;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -12,7 +13,9 @@ import lombok.Setter;
 public class BaseModel {
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name= "id", columnDefinition = "binary(16)", nullable = false, updatable = false)
+    private UUID id;
     private String name;
 
 }
