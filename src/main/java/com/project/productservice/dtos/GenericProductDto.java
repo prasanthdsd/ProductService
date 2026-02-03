@@ -1,5 +1,6 @@
 package com.project.productservice.dtos;
 
+import com.project.productservice.models.Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class GenericProductDto {
     private Long id;
-    private String title;
+    private String name;
     private int price;
     private String category;
     private String description;

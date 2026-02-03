@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
@@ -17,12 +18,13 @@ public class ProductController {
 
     //constructor Injection
     //@Autowired OPTIONAL
-    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService) {
+    //@Qualifier("fakeStoreProductService")
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
+    public GenericProductDto getProductById(@PathVariable("id") UUID id) throws ProductNotFoundException {
 
         return productService.getProductById(id);
     }

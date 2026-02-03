@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class FakeStoreClientAdapter {
@@ -34,7 +35,7 @@ public class FakeStoreClientAdapter {
     }
 
 
-    public FakeStoreProductDto getProductById(Long id) throws ProductNotFoundException{
+    public FakeStoreProductDto getProductById(UUID id) throws ProductNotFoundException{
         //Integrate the fake store API.
         //Rest Templates
         RestTemplate restTemplate = restTemplateBuilder.build();

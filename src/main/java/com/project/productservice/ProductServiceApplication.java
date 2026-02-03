@@ -157,7 +157,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 
        // List<Product> products = productRepository.findAllByName("Iphone 17 Pro");
 
-        productRepository.findAllByName_OrderById("IPhone 17 Pro").forEach(System.out::println);
+      //  productRepository.findAllByName_OrderById("IPhone 17 Pro").forEach(System.out::println);
 
 
 

@@ -4,11 +4,12 @@ import com.project.productservice.dtos.GenericProductDto;
 import com.project.productservice.exceptions.ProductNotFoundException;
 
 import java.util.List;
+import java.util.UUID;
 
 
 public interface ProductService {
 
-    GenericProductDto getProductById(Long id) throws ProductNotFoundException;
+    GenericProductDto getProductById(UUID id) throws ProductNotFoundException;
 
     List<GenericProductDto> getAllProducts() throws ProductNotFoundException;
 
