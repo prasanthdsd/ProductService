@@ -21,18 +21,24 @@ import java.util.UUID;
 
 @SpringBootApplication
 public class ProductServiceApplication implements CommandLineRunner {
-    private final CategoryRepository categoryRepository;
-    private final ProductRepository productRepository;
-    private final PriceRepository priceRepository;
-    private final OrderRepository orderRepository;
 
-    public ProductServiceApplication(CategoryRepository categoryRepository, ProductRepository productRepository, PriceRepository priceRepository,
-                                     OrderRepository orderRepository) {
-        this.categoryRepository = categoryRepository;
+    private final ProductRepository productRepository;
+
+    public ProductServiceApplication(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.priceRepository = priceRepository;
-        this.orderRepository = orderRepository;
     }
+//    private final CategoryRepository categoryRepository;
+//    private final ProductRepository productRepository;
+//    private final PriceRepository priceRepository;
+//    private final OrderRepository orderRepository;
+//
+//    public ProductServiceApplication(CategoryRepository categoryRepository, ProductRepository productRepository, PriceRepository priceRepository,
+//                                     OrderRepository orderRepository) {
+//        this.categoryRepository = categoryRepository;
+//        this.productRepository = productRepository;
+//        this.priceRepository = priceRepository;
+//        this.orderRepository = orderRepository;
+//    }
 
 //    private MentorRepository mentorRepository;
 //    private StudentRepository studentRepository;
@@ -130,24 +136,28 @@ public class ProductServiceApplication implements CommandLineRunner {
 
         // Find all the products of the category "Apple devices
       //  optionalCategory.get().getProducts().forEach(product -> {System.out.println(product.getName());});
-        Price price = new Price();
-        price.setCurrency("INR");
-        price.setValue(BigDecimal.valueOf(120000));
+//        Price price = new Price();
+//        price.setCurrency("INR");
+//        price.setValue(BigDecimal.valueOf(120000));
+//
+//        Price savedPrice = priceRepository.save(price);
+//
+//        Category category = new Category();
+//        category.setName("Apple Devices");
+//        category.setDescription("Contains all the apple devices in the category");
+//        Category savedCategory = categoryRepository.save(category);
+//
+//        Product product = new Product();
+//        product.setCategory(savedCategory);
+//        product.setName("IPhone 17 Pro");
+//        product.setPrice(price);
+//        product.setDescription("new product");
+//
+//        productRepository.save(product);
 
-        Price savedPrice = priceRepository.save(price);
+       // List<Product> products = productRepository.findAllByName("Iphone 17 Pro");
 
-        Category category = new Category();
-        category.setName("Apple Devices");
-        category.setDescription("Contains all the apple devices in the category");
-        Category savedCategory = categoryRepository.save(category);
-
-        Product product = new Product();
-        product.setCategory(savedCategory);
-        product.setName("IPhone 17 Pro");
-        product.setPrice(price);
-        product.setDescription("new product");
-
-        productRepository.save(product);
+        productRepository.findAllByName_OrderById("IPhone 17 Pro").forEach(System.out::println);
 
 
 
