@@ -3,21 +3,29 @@ package com.project.productservice.services;
 import com.project.productservice.dtos.FakeStoreProductDto;
 import com.project.productservice.dtos.GenericProductDto;
 import com.project.productservice.exceptions.ProductNotFoundException;
+import com.project.productservice.security.JWTObject;
+import com.project.productservice.security.TokenValidator;
 import com.project.productservice.thirdpartyclients.fakeStoreClient.FakeStoreClientAdapter;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service("fakeStoreProductService")
+@Primary
 public class FakeStoreProductService implements ProductService {
 
     private FakeStoreClientAdapter fakeStoreClientAdapter;
 
-    FakeStoreProductService(FakeStoreClientAdapter fakeStoreClientAdapter) {
+    private TokenValidator tokenValidator;
+
+    FakeStoreProductService(FakeStoreClientAdapter fakeStoreClientAdapter, TokenValidator tokenValidator) {
         this.fakeStoreClientAdapter = fakeStoreClientAdapter;
+        this.tokenValidator = tokenValidator;
     }
 
     private static GenericProductDto convertoToGenericProductDto(FakeStoreProductDto fakeStoreProductDto)
@@ -34,8 +42,25 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public GenericProductDto getProductById(UUID id) throws ProductNotFoundException{
+    public GenericProductDto getProductById(String authToken,Long id) throws ProductNotFoundException{
         //Integrate the fake store API.
+
+        Optional<JWTObject> jwtObjectOptional = tokenValidator.validateToken(authToken);
+        if(jwtObjectOptional.isEmpty()) {
+            //Invalid Token
+            //Reject request
+            return null;
+
+        }
+        JWTObject jwtObject = jwtObjectOptional.get();
+        Long userId = jwtObject.getUser_id();
+
+        if(userId.equals(10L)) {
+            return null;
+        }
+
+        System.out.println(jwtObject.toString());
+
         return convertoToGenericProductDto(fakeStoreClientAdapter.getProductById(id));
 
     }

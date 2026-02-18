@@ -12,7 +12,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service("SelfProductService")
-@Primary
 public class SelfProductService implements ProductService {
 
     private  ProductRepository productRepository;
@@ -21,7 +20,7 @@ public class SelfProductService implements ProductService {
         this.productRepository = productRepository;
     }
     @Override
-    public GenericProductDto getProductById(UUID id) throws ProductNotFoundException {
+    public GenericProductDto getProductById(String authToken,Long id) throws ProductNotFoundException {
         GenericProductDto genericProductDto = new GenericProductDto();
         Optional<Product> optionalProduct = productRepository.findProductById(id);
         if (optionalProduct.isPresent()) {

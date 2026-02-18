@@ -4,6 +4,7 @@ import com.project.productservice.dtos.GenericProductDto;
 import com.project.productservice.exceptions.ProductNotFoundException;
 import com.project.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +25,9 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") UUID id) throws ProductNotFoundException {
+    public GenericProductDto getProductById(@RequestHeader(HttpHeaders.AUTHORIZATION) String authToken, @PathVariable("id") Long id) throws ProductNotFoundException {
 
-        return productService.getProductById(id);
+        return productService.getProductById(authToken,id);
     }
 
     @GetMapping

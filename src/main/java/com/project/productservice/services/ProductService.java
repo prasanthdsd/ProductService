@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface ProductService {
 
-    GenericProductDto getProductById(UUID id) throws ProductNotFoundException;
+    GenericProductDto getProductById(String authToken, Long id) throws ProductNotFoundException;
 
     List<GenericProductDto> getAllProducts() throws ProductNotFoundException;
 

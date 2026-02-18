@@ -35,7 +35,7 @@ public class FakeStoreClientAdapter {
     }
 
 
-    public FakeStoreProductDto getProductById(UUID id) throws ProductNotFoundException{
+    public FakeStoreProductDto getProductById(Long id) throws ProductNotFoundException{
         //Integrate the fake store API.
         //Rest Templates
         RestTemplate restTemplate = restTemplateBuilder.build();

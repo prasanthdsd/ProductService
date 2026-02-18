@@ -13,9 +13,9 @@ import java.util.UUID;
 public class BaseModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name= "id", columnDefinition = "binary(16)", nullable = false, updatable = false)
-    private UUID id;
+//    @GeneratedValue(strategy = GenerationType.UUID)
+//    @Column(name= "id", columnDefinition = "binary(16)", nullable = false, updatable = false)
+    private Long id;
     private String name;
 
 }
