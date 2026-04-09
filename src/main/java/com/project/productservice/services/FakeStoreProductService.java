@@ -45,21 +45,21 @@ public class FakeStoreProductService implements ProductService {
     public GenericProductDto getProductById(String authToken,Long id) throws ProductNotFoundException{
         //Integrate the fake store API.
 
-        Optional<JWTObject> jwtObjectOptional = tokenValidator.validateToken(authToken);
-        if(jwtObjectOptional.isEmpty()) {
-            //Invalid Token
-            //Reject request
-            return null;
-
-        }
-        JWTObject jwtObject = jwtObjectOptional.get();
-        Long userId = jwtObject.getUser_id();
-
-        if(userId.equals(10L)) {
-            return null;
-        }
-
-        System.out.println(jwtObject.toString());
+//        Optional<JWTObject> jwtObjectOptional = tokenValidator.validateToken(authToken);
+//        if(jwtObjectOptional.isEmpty()) {
+//            //Invalid Token
+//            //Reject request
+//            return null;
+//
+//        }
+//        JWTObject jwtObject = jwtObjectOptional.get();
+//        Long userId = jwtObject.getUser_id();
+//
+//        if(userId.equals(10L)) {
+//            return null;
+//        }
+//
+//        System.out.println(jwtObject.toString());
 
         return convertoToGenericProductDto(fakeStoreClientAdapter.getProductById(id));
 
